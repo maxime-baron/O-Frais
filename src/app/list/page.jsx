@@ -7,7 +7,7 @@ export default function List({}) {
     const [places,setPlaces] = useState([])
     const [offset,setoffset] = useState(0)
     const [wait,setWait] = useState(true)
-    const limit = 10
+    const limit = 5
 
     const placeCards = useMemo(() => 
         places.map(place => <PlaceCard place={place} key={place.identifiant}/>
@@ -19,7 +19,10 @@ export default function List({}) {
             const response = await fetch(`https://parisdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/ilots-de-fraicheur-espaces-verts-frais/records?${params}`)
             const result = await response.json()
             console.log(result)
-            setPlaces((current) => [...current, ...result.results])
+            const response2 = await fetch(`https://parisdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/ilots-de-fraicheur-equipements-activites/records?${params}`)
+            const result2 = await response2.json()
+            console.log(result2)
+            setPlaces((current) => [...current, ...result.results, ...result2.results])
             setoffset((current) => current + limit )
             return true
         }catch (error) {

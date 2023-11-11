@@ -4,13 +4,13 @@ import HorizontalScroll from "./HorizontalScroll"
 export default function PlaceCard({place}) {
 
     const days = [
-        "Lundi",
-        "Mardi",
-        "Mercredi",
-        "Jeudi",
-        "Vendredi",
-        "Samedi",
-        "Dimanche",
+        {Lundi: place.horaires_lundi},
+        {Mardi: place.horaires_mardi},
+        {Mercredi: place.horaires_mercredi},
+        {Jeudi: place.horaires_jeudi},
+        {Vendredi: place.horaires_vendredi},
+        {Samedi: place.horaires_samedi},
+        {Dimanche: place.horaires_dimanche}
     ]
 
     const icone = getIcone(place.type)
@@ -33,30 +33,40 @@ export default function PlaceCard({place}) {
                 </div>
             </div>
             <div>
-                <div className="flex space-x-14">
-                    <span className="w-full text-xs">
-                        {place.adresse}
-                    </span>
-                    <Image
-                        src="/svg/Icones/copy.svg"
-                        alt="Next.js Logo"
-                        width={24}
-                        height={24}
-                    />
-                </div>
-                <HorizontalScroll>
-                    {days.map((day, index) => (
-                        <div
-                            className="flex flex-col flex-shrink-0 flex-grow-0 basis-20 p-2.5 shadow-daysShadow rounded-lg"
-                            key={index}
-                        >
-                            <span className="text-primary font-semibold text-xs">
-                                {day}
-                            </span>
-                            <span className=" text-xxs">9h-17h</span>
+                {place.adresse && 
+                    <div className="flex space-x-14">
+                        <span className="w-full text-xs">
+                            {place.adresse + ', ' + place.arrondissement}
+                        </span>
+                        <div onClick={(e)=>{copyHandler(e,place.adresse + ', ' + place.arrondissement)}}>
+                            <span className="text-xs text-primary hidden">Copié&nbsp;!</span>
+                            <Image
+                                src="/svg/Icones/copy.svg"
+                                alt="Next.js Logo"
+                                width={24}
+                                height={24}
+                                className="cursor-pointer"
+                            />
                         </div>
-                    ))}
-                </HorizontalScroll>
+                    </div>
+                }
+                { place.horaires_lundi && place.horaires_mardi && place.horaires_mercredi && place.horaires_jeudi && place.horaires_vendredi && place.horaires_samedi && place.horaires_dimanche ?
+                    <HorizontalScroll>
+                        {days.map((day, index) => (
+                            <div
+                                className="flex flex-col flex-shrink-0 flex-grow-0 basis-20 p-2.5 shadow-daysShadow rounded-lg"
+                                key={index}
+                            >
+                                <span className="text-primary font-semibold text-xs">
+                                    {Object.keys(days[index])[0]}
+                                </span>
+                                <span className=" text-xxs">{day[Object.keys(days[index])[0]].replaceAll("h00","h")}</span>
+                            </div>
+                        ))}
+                    </HorizontalScroll>
+                    :
+                    <div className=" my-2 text-sm">Horaires inconnu</div>
+                }
                 <div className="flex justify-between">
                     <span className=" text-green text-xs">{place.ouvert_24h == "Oui" || place.statut_ouverture == "Ouvert" ? "Ouvert" : ""}</span>
                     {place.payant && <span className="text-gray_C1 text-xs">{ place.payant == "Non" ? "Gratuit" : "Payant" }</span>}
@@ -64,6 +74,19 @@ export default function PlaceCard({place}) {
             </div>
         </div>
     )
+}
+
+const copyhide = (e)=>{
+    e.target.previousSibling.style.display = 'none'
+    e.target.style.display = 'block'
+}
+
+const copyHandler = (e,adresse) => {
+    console.dir(e.target)
+    navigator.clipboard.writeText(adresse)
+    e.target.style.display = 'none'
+    e.target.previousSibling.style.display = 'block'
+    setTimeout(()=>{copyhide(e)},1000)
 }
 
 
