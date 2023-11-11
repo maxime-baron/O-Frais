@@ -18,11 +18,6 @@ module.exports = {
             boxShadow: {
                 daysShadow: "0px 3px 4px 0px rgba(223, 211, 236, 0.25)",
             },
-            // backgroundImage: {
-            //   'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-            //   'gradient-conic':
-            //     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-            // },
         },
     },
     plugins: [],

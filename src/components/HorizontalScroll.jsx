@@ -44,7 +44,7 @@ const HorizontalScroll = ({ children }) => {
             onMouseMove={handleDrag}
             className=""
         >
-            <div className=" py-3 flex gap-1.5 scrollbar-hide overflow-x-hidden">
+            <div className=" py-3 flex gap-1.5 scrollbar-hide overflow-hidden">
                 {children}
             </div>
         </div>
