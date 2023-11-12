@@ -33,7 +33,7 @@ const HorizontalScroll = ({ children }) => {
         const x = e.pageX - slider.offsetLeft;
         const walkX = (x - mouseCoords.current.startX) * 1.5;
         slider.scrollLeft = mouseCoords.current.scrollLeft - walkX;
-        console.log(walkX)
+        // console.log(walkX)
     }
 
     return (
@@ -42,9 +42,8 @@ const HorizontalScroll = ({ children }) => {
             onMouseDown={handleDragStart}
             onMouseUp={handleDragEnd}
             onMouseMove={handleDrag}
-            className=""
         >
-            <div className=" py-3 flex gap-1.5 scrollbar-hide overflow-hidden">
+            <div className=" py-3 flex gap-1.5 scrollbar-hide overflow-scroll lg:overflow-hidden ">
                 {children}
             </div>
         </div>

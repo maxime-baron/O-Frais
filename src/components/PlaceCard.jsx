@@ -16,7 +16,7 @@ export default function PlaceCard({place}) {
     const icone = getIcone(place.type)
 
     return (
-        <div className="flex flex-col p-3 space-y-2 bg-white rounded-xl">
+        <div className="flex flex-col p-3 space-y-2 bg-white rounded-xl shadow-cardShadow mx-6 my-3">
             <div className="flex space-x-3">
                 <Image
                     className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
@@ -82,7 +82,7 @@ const copyhide = (e)=>{
 }
 
 const copyHandler = (e,adresse) => {
-    console.dir(e.target)
+    // console.dir(e.target)
     navigator.clipboard.writeText(adresse)
     e.target.style.display = 'none'
     e.target.previousSibling.style.display = 'block'
