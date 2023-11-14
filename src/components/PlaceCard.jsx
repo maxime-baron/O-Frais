@@ -26,7 +26,7 @@ export default function PlaceCard({place}) {
                     height={42}
                 />
                 <div className="flex flex-col">
-                    <h3 className=" font-semibold text-primary overflow-ellipsis line-clamp-1">
+                    <h3 className=" font-bold font-nexa text-primary overflow-ellipsis line-clamp-1">
                         {place.nom}
                     </h3>
                     <span className=" text-xs text-gray_C1">{place.type}</span>

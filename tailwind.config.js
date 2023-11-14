@@ -7,6 +7,9 @@ module.exports = {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                nexa: ["var(--font-nexa)"],
+            },
             borderColor: ["focus"],
             colors: {
                 gray_C1: "var(--gray)",

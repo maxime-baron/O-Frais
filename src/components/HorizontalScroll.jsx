@@ -8,7 +8,6 @@ const HorizontalScroll = ({ children }) => {
         startX: 0,
         scrollLeft: 0,
     });
-    const [isScrolling, setIsScrolling] = useState(false);
 
     const handleDragStart = (e) => {
         if (!ourRef.current) return
@@ -33,7 +32,6 @@ const HorizontalScroll = ({ children }) => {
         const x = e.pageX - slider.offsetLeft;
         const walkX = (x - mouseCoords.current.startX) * 1.5;
         slider.scrollLeft = mouseCoords.current.scrollLeft - walkX;
-        // console.log(walkX)
     }
 
     return (
