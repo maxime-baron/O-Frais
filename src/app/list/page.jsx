@@ -81,12 +81,12 @@ export default function List({}) {
             <NavBar/>
             <form className="mx-6 mb-3 mt-6 flex space-x-1 shrink-0 items-center" onSubmit={handleSubmit} method="post">
                 <SearchBarSmall value={searchValue} onChange={e => setSearchValue(e.target.value)}/>
-                <Image
+                {/* <Image
                     src="/svg/Icones/filter.svg"
                     alt="Filter icone"
                     width={30}
                     height={30}
-                />
+                /> */}
                 <button className="h-full">
                     <Image
                         src="/svg/Icones/search.svg"
